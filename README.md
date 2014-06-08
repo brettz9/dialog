@@ -16,10 +16,11 @@ or:
 document.addEventListener('DOMComponentsLoaded', function() {'use strict';
 
 var dialog = document.createElement('dialog');
+dialog.appendChild(document.createTextNode('Hello world!'));
 document.body.appendChild(dialog);
 dialog.show();
 setTimeout(function () {
-	dialog.close('Hello world!');
+	dialog.close('Later all!');
 	alert(dialog.returnValue);
 }, 2000);
 
