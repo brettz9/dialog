@@ -6,9 +6,9 @@ Beginnings of a polyfill for HTML dialog (using x-tags).
 
 # Browser support
 
-Currently works in Firefox and Safari. Chrome doesn't allow
-registration without 'x-' but still doesn't seem to work even if
-APIs are defined with 'x-'.
+Currently works in at least Firefox 30.0, Safari 5.1.7, IE 11.0.
+Chrome (35.0.1916.114 m) doesn't allow registration without 'x-'
+but still doesn't seem to work even if APIs are defined with 'x-'.
 
 # Example
 
