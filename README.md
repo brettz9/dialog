@@ -10,10 +10,13 @@ Beginnings of a polyfill for HTML dialog (using x-tags).
 <dialog open="">An open dialog</dialog>
 ```
 
+or:
+
 ```js
 document.addEventListener('DOMComponentsLoaded', function() {'use strict';
 
 var dialog = document.createElement('dialog');
+document.body.appendChild(dialog);
 dialog.show();
 setTimeout(function () {
 	dialog.close('Hello world!');
