@@ -4,6 +4,12 @@ Beginnings of a polyfill for HTML dialog (using x-tags).
 
 **Note: this is barely functional and not fully compliant with the [spec](http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element)**.
 
+# Browser support
+
+Currently works in Firefox and Safari. Chrome doesn't allow
+registration without 'x-' but still doesn't seem to work even if
+APIs are defined with 'x-'.
+
 # Example
 
 ```html
