@@ -1,0 +1,8 @@
+Versions
+
+0.1.1
+* Included node_modules to ensure CustomElements allowed hyphen
+* Fixed README
+
+0.1.0
+* Initial version
