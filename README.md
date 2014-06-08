@@ -42,8 +42,8 @@ $ bower install polyfill-dialog
 ```
 
 Then clone and reference
-"bower_components/polyfill-dialog/bower_components/CustomElements/custom-elements.js"
-and "src/main.js" in your HTML as in demo/index.html.
+"bower_components/CustomElements/custom-elements.js"
+and "bower_components/polyfill-dialog/src/main.js" in your HTML as in demo/index.html.
 
 # Dev Setup
 
