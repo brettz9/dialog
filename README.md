@@ -2,7 +2,7 @@
 
 Beginnings of a polyfill for HTML dialog (using x-tags).
 
-**Note: this is barely functional and not fully compliant with the [spec](http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element)**
+**Note: this is barely functional and not fully compliant with the [spec](http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element)**.
 
 # Example
 
