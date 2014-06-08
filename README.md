@@ -1,6 +1,8 @@
 # dialog
 
-Beginnings of a polyfill for HTML dialog (using x-tags).
+Beginnings of a polyfill for HTML dialog (using the
+[Polymer CustomElements](https://github.com/Polymer/CustomElements)
+polyfill).
 
 **Note: this is barely functional and not fully compliant with the [spec](http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element)**.
 
@@ -8,7 +10,7 @@ Beginnings of a polyfill for HTML dialog (using x-tags).
 
 Currently works in at least Firefox 30.0, Safari 5.1.7, IE 11.0.
 Chrome (35.0.1916.114 m) doesn't allow registration without 'x-'
-but still doesn't seem to work even if APIs are defined with 'x-'.
+but otherwise works if the APIs are changed to be defined with 'x-'.
 
 # Example
 
@@ -19,7 +21,7 @@ but still doesn't seem to work even if APIs are defined with 'x-'.
 or:
 
 ```js
-document.addEventListener('DOMComponentsLoaded', function() {'use strict';
+document.addEventListener('WebComponentsReady', function() {'use strict';
 
 var dialog = document.createElement('dialog');
 dialog.appendChild(document.createTextNode('Hello world!'));
@@ -33,35 +35,28 @@ setTimeout(function () {
 });
 ```
 
-# Download it
+# Installation
 
-Clone and reference x-tag-components.js and src/main.js in your HTML as in demo/index.html.
+```
+$ bower install polyfill-dialog
+```
+
+Then clone and reference
+"bower_components/polyfill-dialog/bower_components/CustomElements/custom-elements.js"
+and "src/main.js" in your HTML as in demo/index.html.
 
 # Dev Setup
 
 Fork this repo, rename it, then clone it.
 
-```
-$ npm install	// install bower tasks
-$ bower install	// install components
-$ grunt build   // build
-$ grunt bump-push  // bump the version number, tag it and push to origin master
-```
-
 Note, however, that I am currently manually commenting out the line in
-x-tag-components.js (line 774) which throws an error on encountering a
-hyphen in the name. This is because our dialog is a polyfill.
-
-# Links
-
-* [Yeoman X-Tag Generator](https://github.com/x-tag/x-tag-generator)
-* [X-Tags Docs](http://x-tags.org/docs)
-* [Guide for creating X-Tag Components](https://github.com/x-tag/core/wiki/Creating-X-Tag-Components)
-* [Using X-Tag components in your applications](https://github.com/x-tag/core/wiki/Using-our-Web-Components-in-Your-Application)
+"bower_components/CustomElements/src/CustomElements.js" (line 108)
+which throws an error on encountering a hyphen in the name. We don't
+want to add a hyphen, however, because our dialog is attempting to be
+a faithful polyfill.
 
 # Todo
 
 1. Make compliant as far as possible with rest of spec.
 1. Figure out issue with full screen display
 1. Add tests
-1. Move to https://github.com/webcomponents/element-boilerplate for VanillaJS approach?

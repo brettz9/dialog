@@ -1,18 +1,24 @@
 {
-  "name": "dialog",
-  "description": "Polyfill HTML dialog",
-  "version": "0.0.0",
-  "author": "Brett Zamir",
-  "keywords": [
-  	"Element",
-    "web-components",
-    "x-tag"
+  "name": "polyfill-dialog",
+  "version": "0.1.0",
+  "homepage": "https://github.com/brettz9/dialog",
+  "authors": [
+    "Brett Zamir <brettz9@yahoo.com>"
   ],
-  "main": [
-    "src/main.js"
-    ,"src/main.css"
+  "description": "Polyfill the dialog element using CustomElements",
+  "main": "src/main.js",
+  "keywords": [
+    "dialog", "polyfill"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
   ],
   "dependencies": {
-    "x-tag-core": "*"
+    "CustomElements": "Polymer/CustomElements#~0.3.1"
   }
 }

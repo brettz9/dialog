@@ -1,4 +1,3 @@
-/*global xtag*/
 /*jslint browser:true*/
 (function () {'use strict';
 
@@ -64,69 +63,90 @@ function styleIfFullScreen (el) {
 
 var fullOpened = false;
 
-xtag.register('dialog', {
-	'extends': 'div',
-	lifecycle: {
-		// also: "inserted", "removed"
-		created: function () {
-			var self = this;
-			this.returnValue = '';
-			styleDialogOpen.start(this);
-			styleIfFullScreen(this);
-			// The fullscreenchange event is only for programmatic screen changes, so we have to poll below
-			window.addEventListener('keydown', function (e) {
-				if (e.keyCode === 27) {
-					self.close();
-				}
-			});
-			document.addEventListener('fullscreenchange', function () {
-				styleIfFullScreen(self);
-			});
-			setInterval(function () {
-				if (screen.width === window.innerWidth) {
-					fullOpened = true;
-					styleDialogOpen.backdrop(self);
-				}
-				else if (fullOpened) {
-					fullOpened = false;
-					styleDialogOpen.noBackdrop(self);
-				}
-			}, 500);
+var dialogProto = Object.create(HTMLDivElement.prototype);
+
+// CUSTOM ELEMENTS API
+// new API for "attachedCallback" and "detachedCallback": "enteredViewCallback", "leftViewCallback"
+dialogProto.createdCallback = function () {
+	var self = this;
+	this.returnValue = '';
+	styleDialogOpen.start(this);
+	styleIfFullScreen(this);
+	// The fullscreenchange event is only for programmatic screen changes, so we have to poll below
+	window.addEventListener('keydown', function (e) {
+		if (e.keyCode === 27) {
+			self.close();
+		}
+	});
+	document.addEventListener('fullscreenchange', function () {
+		styleIfFullScreen(self);
+	});
+	setInterval(function () {
+		if (screen.width === window.innerWidth) {
+			fullOpened = true;
+			styleDialogOpen.backdrop(self);
+		}
+		else if (fullOpened) {
+			fullOpened = false;
+			styleDialogOpen.noBackdrop(self);
+		}
+	}, 500);
+};
+dialogProto.attributeChangedCallback = function (attrName, oldVal, newVal) {
+	// alert(attrName + '::' + oldVal + '::' + newVal);
+	if (attrName === 'open') {
+		styleDialogOpen[newVal](this);
+	}
+};
+// DIALOG API
+dialogProto.show = function (anchor) {
+	this.open = true;
+};
+dialogProto.showModal = function (anchor) {
+	this.open = true;
+};
+dialogProto.close = function (returnValue) {
+	this.open = false;
+	this.returnValue = returnValue;
+};
+
+Object.defineProperties(dialogProto, {
+	open: {
+		get: function () {
+			return !!this.hasAttribute('open');
 		},
-		attributeChanged: function () {
-			
+		set: function (val) {
+			if (typeof val !== 'boolean') {
+				return; // Throw?
+			}
+			this.setAttribute('open', val);
 		}
 	},
-	events: {
-	},
-	accessors: {
-		open: {
-			attribute: {'boolean': true},
-			set: function (val) {
-				styleDialogOpen[val](this);
-			}
+	returnValue: {
+		get: function () {
+			return this._returnValue;
 		},
-		returnValue: {
-			get: function () {
-				return this._returnValue;
-			},
-			set: function (val) {
-				this._returnValue = String(val);
-			}
-		}
-	},
-	methods: {
-		show: function (anchor) {
-			this.open = true;
-		},
-		showModal: function (anchor) {
-			this.open = true;
-		},
-		close: function (returnValue) {
-			this.open = false;
-			this.returnValue = returnValue;
+		set: function (val) {
+			this._returnValue = String(val);
 		}
 	}
+});
+
+document.register('dialog', {
+//	'extends': 'div',
+	prototype: dialogProto
+});
+
+document.addEventListener('WebComponentsReady', function() {'use strict';
+
+// This functionality should probably be inside Polymer
+[].forEach.call(document.getElementsByTagName('dialog'), function (dialog) {
+	if (dialog.hasAttribute('open')) { // Ensure this triggers display behavior since registration not available when first loading page
+		var open = dialog.getAttribute('open');
+		dialog.setAttribute('open', 'true');
+	}
+});
+
 });
 
 
