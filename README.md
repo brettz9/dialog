@@ -64,3 +64,4 @@ hyphen in the name. This is because our dialog is a polyfill.
 1. Make compliant as far as possible with rest of spec.
 1. Figure out issue with full screen display
 1. Add tests
+1. Move to https://github.com/webcomponents/element-boilerplate for VanillaJS approach?
