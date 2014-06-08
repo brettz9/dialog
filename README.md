@@ -58,3 +58,9 @@ hyphen in the name. This is because our dialog is a polyfill.
 * [X-Tags Docs](http://x-tags.org/docs)
 * [Guide for creating X-Tag Components](https://github.com/x-tag/core/wiki/Creating-X-Tag-Components)
 * [Using X-Tag components in your applications](https://github.com/x-tag/core/wiki/Using-our-Web-Components-in-Your-Application)
+
+# Todo
+
+1. Make compliant as far as possible with rest of spec.
+1. Figure out issue with full screen display
+1. Add tests
