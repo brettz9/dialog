@@ -1,5 +1,8 @@
 Versions
 
+0.1.2
+* Remove dependency from bower.json to avoid being treated as a module and getting overwritten
+
 0.1.1
 * Included node_modules to ensure CustomElements allowed hyphen
 * Fixed README

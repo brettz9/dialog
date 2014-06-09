@@ -1,6 +1,6 @@
 {
   "name": "polyfill-dialog",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/brettz9/dialog",
   "authors": [
     "Brett Zamir <brettz9@yahoo.com>"
@@ -17,8 +17,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "CustomElements": "Polymer/CustomElements#~0.3.1"
-  }
+  ]
 }
