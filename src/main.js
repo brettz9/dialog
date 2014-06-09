@@ -137,6 +137,15 @@ document.register('dialog', {
 	prototype: dialogProto
 });
 
+/*
+While I should be able to avoid using this non-standard event by injecting
+a <link rel=import> with HTML Import support and then listen to its load
+event, the user still needs such an event in order to use JavaScript
+(of course they could listen to the load event on the link too, but that
+would defeat the purpose of this working like a polyfill. I guess there's
+no real way to polyfill this short of modifying the code to make it
+work synchronously.
+*/
 document.addEventListener('WebComponentsReady', function() {'use strict';
 
 // This functionality should probably be inside Polymer
