@@ -23,6 +23,14 @@ End End End<br />
 
 <script>
 
+/*
+Even if the dialog code (with HTML Import support) injects a
+<link rel=import>, the user could avoid this non-standard event by
+listening to its load event on the generated link, but that
+would defeat the purpose of this working like a polyfill. I guess there's
+no real way to polyfill this short of modifying the Polymer code to make it
+work synchronously or if the standard defines such an event.
+*/
 document.addEventListener('WebComponentsReady', function() {'use strict';
 
 var dialog = document.querySelector('dialog');

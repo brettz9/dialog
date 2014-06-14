@@ -71,6 +71,11 @@ dialogProto.createdCallback = function () {
 	var self = this;
 	this.returnValue = '';
 	styleDialogOpen.start(this);
+
+	if (this.hasAttribute('open')) { // Ensure this triggers display behavior since registration not available when first loading page
+		this.setAttribute('open', 'true');
+	}
+
 	styleIfFullScreen(this);
 	// The fullscreenchange event is only for programmatic screen changes, so we have to poll below
 	window.addEventListener('keydown', function (e) {
@@ -132,30 +137,9 @@ Object.defineProperties(dialogProto, {
 	}
 });
 
-document.register('dialog', {
+document.registerElement('dialog', {
 //	'extends': 'div',
 	prototype: dialogProto
-});
-
-/*
-While I should be able to avoid using this non-standard event by injecting
-a <link rel=import> with HTML Import support and then listen to its load
-event, the user still needs such an event in order to use JavaScript
-(of course they could listen to the load event on the link too, but that
-would defeat the purpose of this working like a polyfill. I guess there's
-no real way to polyfill this short of modifying the code to make it
-work synchronously.
-*/
-document.addEventListener('WebComponentsReady', function() {'use strict';
-
-// This functionality should probably be inside Polymer
-[].forEach.call(document.getElementsByTagName('dialog'), function (dialog) {
-	if (dialog.hasAttribute('open')) { // Ensure this triggers display behavior since registration not available when first loading page
-		var open = dialog.getAttribute('open');
-		dialog.setAttribute('open', 'true');
-	}
-});
-
 });
 
 
