@@ -4,7 +4,11 @@ Beginnings of a polyfill for HTML dialog (using the
 [Polymer CustomElements](https://github.com/Polymer/CustomElements)
 polyfill).
 
-**Note: this is barely functional and not fully compliant with the [spec](http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element)**.
+**Note: this is barely functional and not fully compliant with the [spec](http://www.w3.org/html/wg/drafts/html/master/interactive-elements.html#the-dialog-element).
+
+It also is not working in Chrome due to spec compliance, but I am hopeful a
+genuine polyfill can be created
+[without hacks](http://comments.gmane.org/gmane.org.w3c.appformats/29863)**
 
 # Browser support
 
